@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace cw2
 {
-    public class Student
+    public class Student 
     {
         public String Id
         {
@@ -28,14 +26,11 @@ namespace cw2
         {
             get; set;
         }
-        public String Studies_Name
-        {
+        public Studies Studies
+         {  
             get; set;
-        }
-        public String Studies_mode
-        {
-            get; set;
-        }
+
+         }
         public String Mothers_Name
         {
             get; set;
