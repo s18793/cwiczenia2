@@ -1,10 +1,12 @@
 ﻿using System;
-
+using System.Xml.Serialization;
 
 namespace cw2
 {
     public class Student 
     {
+
+        [XmlAttribute]
         public String Id
         {
             get; set;
