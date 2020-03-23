@@ -21,7 +21,12 @@ namespace cw2
             var csvPath = args.Length > 0 ? args[0] : @"Data\dane.csv";
             var resulPath = args.Length > 1 ? args[1] : @"Data\wynik";
             var type = args.Length > 2 ? args[2] : "xml";
+            University university = new University()
+            {
+                Author = "Pawe³ Pietrzakk",
 
+
+            };
 
 
 
@@ -60,19 +65,14 @@ namespace cw2
 
 
 
-                Studenci.Add(st);
-               
+                
 
+                university.StudentsAll.Add(st);
             }
 
-            University university = new University()
-            {
-                Author = "Pawe³ Pietrzakk",
+         
 
-                
-            };
-
-            university.StudentsAll.Add(Studenci);
+            
 
 
 
