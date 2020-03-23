@@ -10,6 +10,18 @@ namespace cw2
     public class University
     {
 
+        public University()
+        {
+
+            StudentsAll = new List<Student>();
+            CreateDate = DateTime.Now.ToString("yyyy-mm-dd");
+            StudentsActiv = new List<Student>();
+
+
+
+
+        }
+
         [XmlAttribute(AttributeName = "Author")]
         [JsonPropertyName("Author")]
         public String Author
@@ -33,17 +45,7 @@ namespace cw2
         {
             get; set;
         }
-        public University()
-        {
-
-            StudentsAll = new List<Student>();
-            CreateDate = DateTime.Now.ToString("yyyy-mm-dd");
-            StudentsActiv = new List<Student>();
-            
-
-
-
-        }
+       
         
     }
 }

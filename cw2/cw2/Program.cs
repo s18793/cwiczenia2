@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -15,9 +17,10 @@ namespace cw2
         public static void Main(string[] args)
         {
             List<Student> Studenci = new List<Student>();
-            String csvPath = @"dane.csv";
-            String resulPath = @"wynik.xml";
-            String type = "xml";
+
+            var csvPath = args.Length > 0 ? args[0] : @"Data\dane.csv";
+            var resulPath = args.Length > 1 ? args[1] : @"Data\wynik";
+            var type = args.Length > 2 ? args[2] : "xml";
 
             var university = new University
             {
@@ -56,15 +59,54 @@ namespace cw2
             }
 
 
+            var line = File.ReadLines(csvPath);
 
-            if (!File.Exists(csvPath)) {
-                FileNotFoundException("Podana z³a scie¿ka: " + csvPath);
+            foreach (var lines in line)
+            {
+                if (!File.Exists(csvPath))
+                {
+                    Console.Error.Write("z³a scie¿ka");
+                }
+                else continue;
+                string[] student = lines.Split(',');
+                if (student.Length != 9)
+                {
+
+                    File.AppendAllText(@"Files\Log.txt", $"{DateTime.UtcNow} wrong informations\n");
+                }
+
+
+                Studies studies = new Studies
+                {
+                    name = student[2],
+                    mode = student[3]
+                };
+
+                Student st = new Student
+                {
+                    Name = student[0],
+                    LastName = student[1],
+                    Studies = studies,
+                    Id = student[4],
+                    Bdate = student[5],
+                    Email = student[6],
+                    Mothers_Name = student[7],
+                    Fathers_Name = student[8]
+                };
+
+                Studenci.Add(st);
+                university.StudentsAll.Add(st);
+
             }
 
 
-           
-           
-            
+            using var writer = new FileStream($"{resulPath}.{type}", FileMode.Open);
+            var serializer = new XmlSerializer(typeof(University));
+            serializer.Serialize(writer, university);
+
+            var jsonString = JsonSerializer.Serialize(university);
+            File.WriteAllText($"{resulPath}.json", jsonString);
+
 
 
 
@@ -78,10 +120,9 @@ namespace cw2
 
         }
 
-        private static void FileNotFoundException(string v)
-        {
-            throw new NotImplementedException();
         }
-    }
+
+       
+     
 
 }
