@@ -12,24 +12,67 @@ namespace cw2
 {
     public class Program
     {
-       public static void Main(string[] args)
+        public static void Main(string[] args)
         {
-
-            var csvPath = @"C:\Users\Andrzej\source\repos\cwiczenia2\cw2\cw2\Data\dane.csv";
-            var resulPath = @"C:\Users\Andrzej\source\repos\cwiczenia2\cw2\cw2\Data\wynik.xml";
-            var type = "xml";
+            List<Student> Studenci = new List<Student>();
+            String csvPath = @"C:\Users\Andrzej\source\repos\cwiczenia2\cw2\cw2\Data\dane.csv";
+            String resulPath = @"C:\Users\Andrzej\source\repos\cwiczenia2\cw2\cw2\Data\wynik.xml";
+            String type = "xml";
 
             var university = new University
             {
                 Author = "Pawe³ Pietrzak"
             };
 
-            if (!File.Exists(csvPath)){
+            if (args.Length == 0)
+            {
+                csvPath = @"dane.csv";
+                resulPath = @"result.xml";
+                type = "xml";
+            }
+            else if (args.Length == 1)
+            {
+                csvPath = args[0];
+                resulPath = @"result.xml";
+                type = "xml";
+            }
+            else if (args.Length == 2)
+            {
+                csvPath = args[0];
+                resulPath = args[1];
+                type = "xml";
+            }
+            else if (args.Length == 3)
+            {
+                csvPath = args[0];
+                resulPath = args[1];
+                type = args[2];
+
+            }
+            else
+            {
+                Console.Error.Write("Poda³eœ/aœ z³¹ liczbê argumentów");
+                return;
+            }
+
+
+
+            if (!File.Exists(csvPath)) {
                 FileNotFoundException("Podana z³a scie¿ka: " + csvPath);
             }
 
 
+           
+           
             
+
+
+
+
+
+
+
+
 
 
 
