@@ -22,14 +22,8 @@ namespace cw2
             var resulPath = args.Length > 1 ? args[1] : @"Data\wynik";
             var type = args.Length > 2 ? args[2] : "xml";
 
-            var university = new University
-            {
-                Author = "Pawe³ Pietrzak"
-            };
 
 
-
-            
 
             foreach (var line in File.ReadLines(csvPath))
             {
@@ -64,10 +58,24 @@ namespace cw2
                     Fathers_Name = student[8]
                 };
 
+
+
                 Studenci.Add(st);
-                university.StudentsAll.Add(st);
+               
 
             }
+
+            University university = new University()
+            {
+                Author = "Pawe³ Pietrzakk",
+
+                
+            };
+
+            university.StudentsAll.Add(Studenci);
+
+
+
 
 
             using var writer = new FileStream($"{resulPath}.{type}", FileMode.Open);
@@ -90,7 +98,7 @@ namespace cw2
 
         }
 
-        }
+     }
 
        
      
