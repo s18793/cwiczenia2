@@ -27,48 +27,18 @@ namespace cw2
                 Author = "Pawe³ Pietrzak"
             };
 
-            if (args.Length == 0)
-            {
-                csvPath = @"dane.csv";
-                resulPath = @"result.xml";
-                type = "xml";
-            }
-            else if (args.Length == 1)
-            {
-                csvPath = args[0];
-                resulPath = @"result.xml";
-                type = "xml";
-            }
-            else if (args.Length == 2)
-            {
-                csvPath = args[0];
-                resulPath = args[1];
-                type = "xml";
-            }
-            else if (args.Length == 3)
-            {
-                csvPath = args[0];
-                resulPath = args[1];
-                type = args[2];
-
-            }
-            else
-            {
-                Console.Error.Write("Poda³eœ/aœ z³¹ liczbê argumentów");
-                return;
-            }
 
 
-            var line = File.ReadLines(csvPath);
+            
 
-            foreach (var lines in line)
+            foreach (var line in File.ReadLines(csvPath))
             {
                 if (!File.Exists(csvPath))
                 {
                     Console.Error.Write("z³a scie¿ka");
                 }
                 else continue;
-                string[] student = lines.Split(',');
+                string[] student = line.Split(',');
                 if (student.Length != 9)
                 {
 
