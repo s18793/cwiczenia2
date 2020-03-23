@@ -15,8 +15,8 @@ namespace cw2
         public static void Main(string[] args)
         {
             List<Student> Studenci = new List<Student>();
-            String csvPath = @"C:\Users\Andrzej\source\repos\cwiczenia2\cw2\cw2\Data\dane.csv";
-            String resulPath = @"C:\Users\Andrzej\source\repos\cwiczenia2\cw2\cw2\Data\wynik.xml";
+            String csvPath = @"dane.csv";
+            String resulPath = @"wynik.xml";
             String type = "xml";
 
             var university = new University
